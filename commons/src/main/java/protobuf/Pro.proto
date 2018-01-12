@@ -1,0 +1,23 @@
+syntax = "proto3";  //指定版本，必须要写（proto3、proto2）
+
+
+//message是固定的。UserInfo是类名，可以随意指定，符合规范即可
+message UserInfo{
+
+//参数类型 参数名称=字段编码值
+int32 senderId=1;// 发送人ID
+  
+  
+int32 receiverId=2;// 接受人ID
+  
+  
+string senderName=3;// 发送人姓名
+  
+  
+string receiverName=4;// 接收人姓名
+  
+  
+string senderHeadPortrait=5;// 发送人头像URL
+  
+  
+} 
