@@ -10,4 +10,5 @@ public class MongoDBJDBC {
 
     public static final Logger logger = LoggerFactory.getLogger(MongoDBJDBC.class);
 
+
 }
