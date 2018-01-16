@@ -1,10 +1,15 @@
 package org.chinalbs.main;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.*;
+import org.apache.spark.api.java.function.VoidFunction;
+import org.apache.spark.api.java.function.VoidFunction2;
 import org.apache.spark.streaming.Duration;
 import org.apache.spark.streaming.Time;
 import org.apache.spark.streaming.api.java.JavaDStream;
@@ -13,10 +18,12 @@ import org.apache.spark.streaming.api.java.JavaStreamingContext;
 import org.apache.spark.streaming.kafka010.ConsumerStrategies;
 import org.apache.spark.streaming.kafka010.KafkaUtils;
 import org.apache.spark.streaming.kafka010.LocationStrategies;
-import org.chinalbs.hdfs.HdfsUtils;
+import org.bson.Document;
 import org.chinalbs.kafka.KafkaConsumerConf;
+import org.chinalbs.mongodb.MongoUtls;
 import org.chinalbs.utils.Constant;
-import org.apache.spark.api.java.function.VoidFunction2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -26,14 +33,19 @@ import java.util.Iterator;
 Create by jiangyun on 2017/12/20
 */
 public class Sparkmain {
-    private static long beginTime = System.currentTimeMillis();
+    static MongoDatabase mongoDB;
+    static MongoCollection<Document> good;
+    private static final Logger logger = LoggerFactory.getLogger(Sparkmain.class);
 
     static {
-        beginTime = System.currentTimeMillis();
+        mongoDB = MongoUtls.getMongoDB();
+        good = mongoDB.getCollection("good");
     }
 
 
     public static void main(String[] args) {
+
+
        /* try {
             HBaseUtil.createTable(Constant.TsinghuaUniversityOther, Constant.ColumnFamily, false);
         } catch (Exception e) {
@@ -52,8 +64,9 @@ public class Sparkmain {
             @Override
             public void call(JavaRDD<ConsumerRecord<String, String>> v1, Time v2) throws Exception {
                 v1.foreachPartition(new VoidFunction<Iterator<ConsumerRecord<String, String>>>() {
-                    int i=0;
+                    int i = 0;
                     String path = uri;
+
                     @Override
                     public void call(Iterator<ConsumerRecord<String, String>> consumerRecordIterator) throws Exception {
 
@@ -64,16 +77,23 @@ public class Sparkmain {
                             Put put = HBaseUtil.objectToPut(alarm, Constant.ColumnFamily);
                             HBaseUtil.put(Constant.TsinghuaUniversityOther, put);*/
 
+                            String s = consumerRecordIterator.next().value();
+                            JSONObject jsonObject = JSON.parseObject(s);
+                            try {
+                                good.insertOne(new Document(jsonObject));
+                            } catch (Exception e) {
+                                logger.error("insert Exception");
+                            }
+/*
                             ConsumerRecord<String, String> consumerRecord = consumerRecordIterator.next();
 
-                           if (HdfsUtils.getFile(path).getLen()>=256*1024){
-                               i++;
-                               path = uri+i;
-                               HdfsUtils.append(uri +i, consumerRecord.toString() + "\n");
-                           }
-                           else {
-                               HdfsUtils.append(path , consumerRecord.toString() + "\n");
-                           }
+                            if (HdfsUtils.getFile(path).getLen() >= 256 * 1024) {
+                                i++;
+                                path = uri + i;
+                                HdfsUtils.append(uri + i, consumerRecord.toString() + "\n");
+                            } else {
+                                HdfsUtils.append(path, consumerRecord.toString() + "\n");
+                            }*/
 
 
                         }

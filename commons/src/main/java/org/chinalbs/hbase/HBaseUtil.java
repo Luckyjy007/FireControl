@@ -742,7 +742,6 @@ public class HBaseUtil {
             put.addColumn(Bytes.toBytes(cf), Bytes.toBytes(field.getName()), Bytes.toBytes(field.get(object).toString()));
             System.out.println(field.getName());
             System.out.println(field.get(object).toString());
-            System.out.println("745");
         }
 
         return put;

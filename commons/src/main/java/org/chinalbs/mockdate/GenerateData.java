@@ -3,7 +3,6 @@ package org.chinalbs.mockdate;
 
 import org.chinalbs.tablemodel.Alarm;
 
-import java.io.Serializable;
 import java.util.Random;
 import java.util.UUID;
 
@@ -16,7 +15,7 @@ public class GenerateData {
 
     public Alarm GenerateAlarmData() {
 
-        Long primaryKey = random.nextInt(10000000) + 10000000L + random.nextInt(1000);
+        Long primaryKey = random.nextInt(10000000) + 10945343L + random.nextInt(100000)+random.nextInt(1000);
         String equipmentId = UUID.randomUUID().toString();
         String warehousingTime = DateUtils.getTimeStamp("2014-01-01", "2016-12-12", '-');
         String alarmType = alarmTypes[random.nextInt(10)];

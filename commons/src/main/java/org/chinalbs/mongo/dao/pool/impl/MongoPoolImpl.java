@@ -1,8 +1,5 @@
 package org.chinalbs.mongo.dao.pool.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoClientOptions.Builder;
@@ -10,6 +7,9 @@ import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
 import org.chinalbs.mongo.dao.pool.MongoPool;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MongoPoolImpl implements MongoPool {
@@ -120,10 +120,10 @@ public class MongoPoolImpl implements MongoPool {
 
 	/**
 	 * @Title               getServerAddress
-	 * @author              00013052
+	 * @author              jiangyun
 	 * @Description         set client address
 	 * @return              client address
-	 * @Date                2016.06.21 08:38:31
+	 * @Date                2018.01.11 08:38:31
 	 */
 	private ServerAddress getServerAddress() {
 		if(host == null) {

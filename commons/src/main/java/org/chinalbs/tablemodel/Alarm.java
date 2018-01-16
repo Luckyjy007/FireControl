@@ -1,16 +1,16 @@
 package org.chinalbs.tablemodel;
 
 
-import com.alibaba.fastjson.JSONObject;
+import org.chinalbs.mongodb.MongoBean;
 
 import java.io.Serializable;
 
 /*
 Create by jiangyun on 2017/12/20
 */
-public class Alarm implements Serializable {
+public class Alarm extends MongoBean implements Serializable  {
     private static final long serialVersionUID = 330410716100931438L;
-    public Long primaryKey;         // 主键
+    public Long _id;         // 主键
     public String equipmentId;        // 设备编号
     public String warehousingTime;    // 入库时间
     public String alarmType;          // 报警类型
@@ -26,7 +26,7 @@ public class Alarm implements Serializable {
 
     public Alarm(Long primaryKey, String equipmentId, String warehousingTime, String alarmType, Long alarmTime,
                  int artificialState, int systemStatus, int webReset, int state, String extra) {
-        this.primaryKey = primaryKey;
+        this._id = primaryKey;
         this.equipmentId = equipmentId;
         this.warehousingTime = warehousingTime;
         this.alarmType = alarmType;
@@ -41,7 +41,7 @@ public class Alarm implements Serializable {
     @Override
     public String toString() {
         return "Alarm{" +
-                "primaryKey=" + primaryKey +
+                "primaryKey=" + _id +
                 ", equipmentId='" + equipmentId + '\'' +
                 ", warehousingTime='" + warehousingTime + '\'' +
                 ", alarmType='" + alarmType + '\'' +
@@ -53,9 +53,7 @@ public class Alarm implements Serializable {
                 ", extra='" + extra + '\'' +
                 '}';
     }
-public String toJsonString (){
-        return JSONObject.toJSONString(this);
-}
+
 
 }
 
