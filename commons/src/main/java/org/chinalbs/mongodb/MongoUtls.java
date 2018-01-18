@@ -19,6 +19,7 @@ public class MongoUtls {
 
         MongoDatabase mongoDB = MongoUtls.getMongoDB();
         MongoCollection<Document> good = mongoDB.getCollection("good");
+
         System.out.println(good.count());
     }
 

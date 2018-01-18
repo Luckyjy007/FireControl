@@ -46,8 +46,10 @@ public class ObjectCommonUtils {
         Map<String, String> map = new HashMap<>();
 
         // 判断这个类是否有属性,或者传递的属性值是否正确
-        if (fieldList.isEmpty())
+        if (fieldList.isEmpty()) {
             return map;
+        }
+
         // 遍历属性并且取值
         for (String field : fieldList) {
             // 获取这个对象对应的属性值
@@ -56,8 +58,10 @@ public class ObjectCommonUtils {
                 value = getMethodInvoke(o, field);
             } catch (Exception e) {
             }
-            if (value == null)
+            if (value == null) {
                 continue;
+            }
+
             map.put(field, String.valueOf(value));
         }
 
@@ -90,8 +94,10 @@ public class ObjectCommonUtils {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             String fieldName = field.getName();
-            if ("serialVersionUID".equals(fieldName))
+            if ("serialVersionUID".equals(fieldName)) {
                 continue;
+            }
+
             // TODO: fieldName非空校验
             allFieldName.add(fieldName);
         }
@@ -119,8 +125,10 @@ public class ObjectCommonUtils {
         Map<String, String> map = new HashMap<>();
 
         // 判断这个类是否有属性,或者传递的属性值是否正确
-        if (fieldList.isEmpty())
+        if (fieldList.isEmpty()) {
             return map;
+        }
+
         // 遍历属性并且取值
         try {
             for (String field : fieldList) {
@@ -129,8 +137,10 @@ public class ObjectCommonUtils {
 
                 value = getMethodInvoke(o, field);
 
-                if (value == null)
+                if (value == null) {
                     continue;
+                }
+
                 map.put(field, String.valueOf(value));
             }
         } catch (Exception e) {
@@ -148,7 +158,7 @@ public class ObjectCommonUtils {
      * @version 3.0
      */
     public static Map<String, String> objResolveToMapV3(Object o, String... fields)
-        throws Exception {
+            throws Exception {
 
         List<String> fieldList = new ArrayList<>();
         if (fields == null || fields.length == 0) {
@@ -160,8 +170,10 @@ public class ObjectCommonUtils {
         Map<String, String> map = new HashMap<>();
 
         // 判断这个类是否有属性,或者传递的属性值是否正确
-        if (fieldList.isEmpty())
+        if (fieldList.isEmpty()) {
             return map;
+        }
+
         // 遍历属性并且取值
         for (String field : fieldList) {
             // 获取这个对象对应的属性值
@@ -169,8 +181,10 @@ public class ObjectCommonUtils {
 
             value = getMethodInvoke(o, field);
 
-            if (value == null)
+            if (value == null) {
                 continue;
+            }
+
             map.put(field, String.valueOf(value));
         }
         return map;
@@ -186,7 +200,7 @@ public class ObjectCommonUtils {
      * @throws InvocationTargetException 如果调用属性的 setter 方法失败
      */
     public static Map<String, String> convertBean(Object bean)
-        throws IntrospectionException, IllegalAccessException, InvocationTargetException {
+            throws IntrospectionException, IllegalAccessException, InvocationTargetException {
         Class type = bean.getClass();
         Map<String, String> returnMap = new HashMap<>();
         BeanInfo beanInfo = Introspector.getBeanInfo(type);
