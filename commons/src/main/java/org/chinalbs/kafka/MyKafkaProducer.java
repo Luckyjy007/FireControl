@@ -17,12 +17,12 @@ public class MyKafkaProducer {
         while (true) {
             Alarm alarm = generateData.GenerateAlarmData();
             sendMessage(topic, alarm, producer);
-            try {
+           /* try {
 
                 Thread.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
     }
