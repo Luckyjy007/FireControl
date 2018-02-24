@@ -1,0 +1,44 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+package org.stationharbor.model;
+option java_package = "org.chinalbs.bean";
+option java_outer_classname = "MotCommon";
+
+message StCOMT{
+    int32 iYear = 1 ;
+	int32 iMonth = 2 ;
+	int32 iDay = 3 ;
+	int32 iHour = 4 ;
+	int32 iMin = 5 ;
+	double dSec =6 ;
+
+}
+
+
+//GPS时
+message StGPST
+{
+	int32 iWeek = 1;
+	double dWeekSec = 2;//周内秒
+	double dSecSum = 3;//从起始时刻总秒数
+	int32 iWeekDay = 4;//周内天
+	int32 iYear = 5;
+	int32 iDoy = 6;
+	double dDaySec = 7;
+}
+
+//BD时
+message StBDST
+{
+  int32 iWeek = 1;
+  double dWeekSec = 2;//周内秒
+  double dSecSum = 3;//从起始时刻总秒数
+  int32 iWeekDay = 4;//周内天
+  int32 iYear = 5;
+  int32 iDoy = 6;
+  double dDaySec = 7;
+}
+
+message MotEphPo{
+  google.protobuf.Any object = 1;
+}

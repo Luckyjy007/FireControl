@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="myspark">
+    <output-path>$PROJECT_DIR$/out/artifacts/myspark</output-path>
+    <root id="archive" name="myspark.jar">
+      <element id="module-output" name="commons" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/commons/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

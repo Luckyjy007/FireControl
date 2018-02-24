@@ -4,9 +4,6 @@ package org.chinalbs.utils;
 Create by jiangyun on 2017/12/19
 */
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
 //常量参数
 public class Constant {
 
@@ -15,7 +12,7 @@ public class Constant {
     public final static String HBASE_NODE = "hbase.zookeeper.quorum";
     public final static String KAFKAPRODUCER_PROP= "kafkaproducer.properties";
     public final static String KAFKACOMSUMEER_PROP ="kafkaconsumer.properties";
-    public final static String[] TOPIC_1={"Hdfs","test2","test3","test4","TestAlarm"};
+    public final static String[] TOPIC_1={"Hdfs","rinex_obs"};
 
     //Hbase TableName about FireControl
 

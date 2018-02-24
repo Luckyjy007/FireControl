@@ -73,4 +73,6 @@ public class Bean extends MongoBean {
                 ", hashMap=" + hashMap +
                 '}';
     }
+
+
 }

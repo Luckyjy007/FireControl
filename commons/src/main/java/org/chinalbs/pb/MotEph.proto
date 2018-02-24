@@ -1,0 +1,129 @@
+syntax = "proto3";
+package org.stationharbor.model;
+option java_package = "org.chinalbs.pb";
+import "org/chinalbs/pb/MotCommon.proto";
+option java_outer_classname = "MotEph";
+
+
+//Glonass 星历
+message StGloBrdEph{
+	string strSatSys = 1;//卫星类型
+	int32 iGloPrn =2;//卫星号
+	StCOMT stToe =3;//
+	double dTauN = 4;//SV clock bias(sec) (-TauN)
+	double dGammaN = 5;//SV relative frequency bias (+GammaN)
+	
+
+	repeated double dAPos = 6;// KM，读N文件后单位转换为m */
+	repeated double dAVel = 7;// KM/SEC，读N文件后单位转换为m/s */
+	repeated double dAAcc = 8;//日月慑动加速度 KM/SEC2，，读N文件后单位转换为m/sec2
+
+	double		dHealth = 9;				/* 0 == OK*/
+	int32	    iFreqNum = 10;				/* frequency number(-7...+13) (-7...+6 ICD 5.1) */
+	int32 tb = 11;
+	int32 tk_h = 12;
+	int32 tk_m = 13;
+	int32 tk_s = 14;
+	double dAoo = 15;
+
+}
+//北斗星历
+message StBdsBrdEph{
+	string strSatSys = 1;//卫星系统
+	int32 iBdsPrn = 2;
+	StCOMT stToc = 3;//年月日时分秒
+	StBDST stTocBdsT = 4;//toc（周内秒）
+	double dClkBias = 5;
+	double dClkDrift = 6;
+	double dClkRate = 7;
+
+	/* Orbit1 */
+	double		dAODE = 8;			/* age of ephemeris entry(sec),how long ago was it uploaded */
+	double		dCrs = 9;			/* radius correction sine(m) */
+	double		dDeltaN = 10;			/* correction to mean motion(radians/sec) */
+	double		dM0 = 11;				/* mean anomaly (radians) */
+
+	/* Orbit2 */
+	double		dCuc = 12;				/* correction to argument in latitude cosine(radians) */
+	double		de = 13;					/* eccentricity */
+	double		dCus = 14;				/* correction to argument in latitude sine(radians) */
+	double		dSqrtA = 15;				/* square root if semi-major axis(m^0.5) */
+
+	/* Orbit3 */
+	double		dToe = 16;				/* time of ephemeris (sec of GPS week) */
+	double		dCic = 17;				/* correction to inclination,cosine(radians) */
+	double		dOmega = 18;				/* langitude of theasecending node (radians) Capital omega */
+	double		dCis = 19;				/* corrction to inclination,sine(radians) */
+
+	/* Orbit4 */
+	double		di0 = 20;				/* inclination (radians) */
+	double		dCrc = 21;				/* radius correction(m) */
+	double		dwe = 22;					/* argument of perigee(radians) lower case omega */
+	double		dDotOmega = 23;			/* time derivative of longitude of the ascending node(radians/sec) */
+
+	/* Orbit5 */
+	double		dIDOT = 24;				/* time derivative of inclination rad/sec */
+	double		dCodesOnL2Channel = 25;	/* flags whose meaning is not clear */
+	double		dBdsWeek = 26;			/* GPS week number */
+	double		dL2PDataFlag = 27;		/* Flags whose meaning is not clear */
+
+	/* Orbit6 */
+	double		dSVAcc = 28;		/* range accuracy(metre) */
+	double		dSatH1 = 29;			/* satellite health flag */
+	double		dTGD1 = 30;				/* Group delay L2 bias (word 7 subframe 1) */
+	double		dTGD2 = 31;				/* age of clock parameter upload (sec) */
+
+	double       dAODC = 32;
+}
+
+
+
+//GPS 广播星历
+message StGpsBrdEph
+{
+	string strSatSys = 1;
+	int32 iGpsPrn = 2;
+	StCOMT stToc = 3;
+	StGPST stTocGpsT = 4;
+	double dClkBias = 5;    //af0
+	double dClkDrift = 6;   //af1
+	double dClkRate = 7;    //af2
+
+	/* Orbit1 */
+	double		dIODE = 8;			/* age of ephemeris entry(sec),how long ago was it uploaded */
+	double		dCrs = 9;			/* radius correction sine(m) */
+	double		dDeltaN = 10;			/* correction to mean motion(radians/sec) */
+	double		dM0 = 11;				/* mean anomaly (radians) */
+
+	/* Orbit2 */
+	double		dCuc = 12;				/* correction to argument in latitude cosine(radians) */
+	double		de = 13;					/* eccentricity */
+	double		dCus = 14;				/* correction to argument in latitude sine(radians) */
+	double		dSqrtA = 15;				/* square root if semi-major axis(m^0.5) */
+
+	/* Orbit3 */
+	double		dToe = 16;				/* time of ephemeris (sec of GPS week) */
+	double		dCic = 17;				/* correction to inclination,cosine(radians) */
+	double		dOmega = 18;				/* langitude of theasecending node (radians) Capital omega */
+	double		dCis = 19;				/* corrction to inclination,sine(radians) */
+
+	/* Orbit4 */
+	double		di0 = 20;				/* inclination (radians) */
+	double		dCrc = 21;				/* radius correction(m) */
+	double		dwe = 22;					/* argument of perigee(radians) lower case omega */
+	double		dDotOmega = 23;			/* time derivative of longitude of the ascending node(radians/sec) */
+
+	/* Orbit5 */
+	double		dIDOT = 24;				/* time derivative of inclination rad/sec */
+	double		dCodesOnL2Channel = 25;	/* flags whose meaning is not clear */
+	double		dGpsWeek = 26;			/* GPS week number */
+	double		dL2PDataFlag = 27;		/* Flags whose meaning is not clear */
+
+	/* Orbit6 */
+	double		dSVAcc = 28;		/* range accuracy(metre) */
+	double		dSVHealth = 29;			/* satellite health flag */
+	double		dTGD = 30;				/* Group delay L2 bias (word 7 subframe 1) */
+	double		dIODC = 31;				/* age of clock parameter upload (sec) */
+
+}
+

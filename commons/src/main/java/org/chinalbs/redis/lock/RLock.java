@@ -55,7 +55,7 @@ public class RLock {
     public boolean tryLock(String key, long time, TimeUnit unit) throws InterruptedException {
         long nanosTimeout = TimeUnit.NANOSECONDS.convert(time, unit);
         if (time <= 0L)
-            return false;
+        {  return false;}
         // 过期的nanoTime
         final long deadline = System.nanoTime() + nanosTimeout;
         for (; ; ) {
@@ -65,12 +65,12 @@ public class RLock {
             }
             nanosTimeout = deadline - System.nanoTime();
             if (nanosTimeout <= 0L)
-                return false;
+            { return false;}
             // 挂起线程
             parkThread(parkNanosTime);
             // 支持线程中断
             if (Thread.interrupted())
-                throw new InterruptedException();
+            {  throw new InterruptedException();}
         }
     }
 
@@ -188,7 +188,7 @@ public class RLock {
     public boolean unlock(String key) {
         return RedisClient.domain(redis -> {
             Long res = redis.del(lockPrefix + key);
-            return res.equals(1l);
+            return res.equals(1L);
         });
     }
 

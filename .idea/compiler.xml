@@ -9,7 +9,6 @@
         <module name="commons" />
         <module name="hbase" />
         <module name="mock" />
-        <module name="Spark" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

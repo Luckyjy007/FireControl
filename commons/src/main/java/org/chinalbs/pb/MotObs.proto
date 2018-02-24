@@ -1,0 +1,49 @@
+syntax = "proto3";
+package org.stationharbor.model;
+import "org/chinalbs/pb/MotCommon.proto";
+option java_package = "org.chinalbs.pb";
+option java_outer_classname = "MotObs";
+
+
+message StSatObs
+{
+	StCOMT stComTime = 1;//转换为GPS时（时间只需一个）
+	StGPST stGpsTime = 2;//
+	StBDST stBdsTime = 3;
+	int32 iPrn = 4;
+	double dCA = 5;
+	double dP1 = 6;
+	double dP2 = 7;
+	double dP3 = 8;//GPS卫星对应L5
+	double dL1 = 9;
+	double dL2 = 10;
+	double dL3 = 11;
+	double dD1 = 12;
+	double dD2 = 13;
+	double dD3 = 14;
+	double dS1 = 15;
+	double dS2 = 16;
+	double dS3 = 17;
+}
+
+//观测值
+message StObs
+{
+	//用于用户识别网络传输内容
+	int32 iStaIndex = 1;//站点id
+	double dInterval = 2; //采样率
+	string strSta = 3;//站点名称
+	StCOMT stComTime = 4;//glonass时间
+	StGPST stGpsTime = 5;//gps周秒
+	StBDST stBdsTime = 6;//北斗周秒（北斗开始时间2006.1.1）
+	repeated StSatObs stAGpsObs = 7;//
+	repeated StSatObs stAGloObs = 8;
+	repeated StSatObs stABdsObs = 9;
+	int32 iSatSum = 10;//
+	int32 iGpsSum = 11;
+	int32 iGloSum = 12;
+	int32 iBdsSum = 13;
+    string strRcvType = 14;//接收机类型
+    string strAntType = 15;//接收机天线类型
+
+}

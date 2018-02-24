@@ -14,18 +14,18 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.apache.hbase/hbase-client -->
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.hbase/hbase-client &ndash;&gt;
         <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-client</artifactId>
             <version>1.2.6</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.hbase/hbase-common -->
+        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.hbase/hbase-common &ndash;&gt;
         <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-common</artifactId>
             <version>1.2.6</version>
-        </dependency>
+        </dependency>-->
         <!-- https://mvnrepository.com/artifact/org.mongodb/mongodb-driver -->
         <dependency>
             <groupId>org.mongodb</groupId>
@@ -33,13 +33,28 @@
             <version>3.6.1</version>
         </dependency>
 
-
-        <!-- https://mvnrepository.com/artifact/org.apache.hbase/hbase-server -->
+        <!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-yarn-common -->
         <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-server</artifactId>
-            <version>1.2.6</version>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-yarn-common</artifactId>
+            <version>2.7.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java-util -->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java-util</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+
+
 
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
         <dependency>
@@ -96,22 +111,6 @@
             <artifactId>kafka-clients</artifactId>
             <version>0.10.2.1</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java-util -->
-        <dependency>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java-util</artifactId>
-            <version>3.5.1</version>
-        </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
-        <dependency>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java</artifactId>
-            <version>3.5.1</version>
-        </dependency>
-
 
 
         <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-streaming-kafka-0-10 -->

@@ -1,7 +1,6 @@
 package org.chinalbs.kafka;
 
 import org.chinalbs.utils.Constant;
-import org.chinalbs.hbase.HbaseConf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +21,7 @@ public class KafkaProducerConf {
         if (kafkaParams == null) {
             kafkaParams = new HashMap<String, String>(10);
         }
-        InputStream inputStream = HbaseConf.class.getClassLoader().getResourceAsStream(Constant.KAFKAPRODUCER_PROP);
+        InputStream inputStream = KafkaProducerConf.class.getClassLoader().getResourceAsStream(Constant.KAFKAPRODUCER_PROP);
         Properties p = new Properties();
         try {
             p.load(inputStream);

@@ -15,13 +15,6 @@ Create by jiangyun on 2018/1/12
 */
 public class MongoUtls {
 
-    public static void main(String[] args) {
-
-        MongoDatabase mongoDB = MongoUtls.getMongoDB();
-        MongoCollection<Document> good = mongoDB.getCollection("good");
-
-        System.out.println(good.count());
-    }
 
     private static final Logger logger = LoggerFactory.getLogger(MongoUtls.class);
 
